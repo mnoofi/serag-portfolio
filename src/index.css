@@ -53,3 +53,58 @@ section {
   padding-top: 120px;
   padding-bottom: 120px;
 }
+/* Hover Effects */
+motion-div:hover .cert-overlay {
+  opacity: 1;
+  backdrop-filter: blur(3px);
+}
+
+motion-div:hover .cert-img {
+  filter: blur(2px) brightness(0.8);
+}
+
+motion-div:hover .cert-glow {
+  opacity: 1;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.mobile-btn {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-btn {
+    display: block;
+  }
+}

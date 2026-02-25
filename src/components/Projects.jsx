@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa"
 const projects = [
   {
     title: "Weather Analytics & ML Prediction Platform",
+    image: "/dashboard1.png",
     description:
       "End-to-end ML pipeline for rain prediction with data preprocessing, feature engineering, model comparison, and interactive dashboard.",
     tech: ["Python", "Scikit-learn", "Random Forest", "Dash", "Plotly"],
@@ -14,12 +15,13 @@ const projects = [
   },
   {
     title: "Autonomous Fire Fighting Robot",
+    image: "/rproject.png",
     description:
       "Embedded robotics system for real-time fire detection and suppression.",
     tech: ["Arduino", "Ultrasonic Sensor", "Flame Sensors", "L298N", "Servo Motor"],
     details:
       "Designed and implemented an autonomous robot capable of detecting fire direction, avoiding obstacles, and activating a water pump system using servo-based targeting and relay-controlled suppression.",
-    github: null
+    github: "https://github.com/mnoofi/ObstacleFire-Robot"
   }
 ]
 
@@ -72,6 +74,38 @@ function ProjectCard({ project }) {
         >
           {project.title}
         </h3>
+        {/* Project Image */}
+<div
+  style={{
+    position: "relative",
+    height: "220px",
+    marginBottom: "25px",
+    borderRadius: "18px",
+    overflow: "hidden"
+  }}
+>
+  <motion.img
+    src={project.image}
+    alt={project.title}
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.4 }}
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover"
+    }}
+  />
+
+  {/* subtle dark overlay */}
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background:
+        "linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6))"
+    }}
+  />
+</div>
 
         <p
           style={{

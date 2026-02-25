@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Tools from "./components/Tools"
+import Certificates from "./components/Certificates"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Skills />
       <Projects />
       <Tools />
+      <Certificates />
       <div style={{ height: "200vh" }} />
     </>
   )

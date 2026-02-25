@@ -1,71 +1,95 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 export default function Navbar() {
-  const [light, setLight] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState("")
+
+  const sections = [
+    { id: "home", label: "Home" },
+    { id: "projects", label: "Projects" },
+    { id: "tools", label: "Tools & Technologies" },
+    { id: "certificates", label: "Certificates" }
+  ]
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id)
+          }
+        })
+      },
+      {
+        rootMargin: "-40% 0px -40% 0px"
+      }
+    )
 
-  const toggleMode = () => {
-    document.body.classList.toggle("light")
-    setLight(!light)
-  }
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <motion.nav
-  initial={{ y: -100, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.8 }}
-  style={{
-    position: "fixed",
-    top: 20,
-    left: 0,
-    right: 0,
-    margin: "0 auto",
-    //width: "min(1100px, 90%)",
-    padding: scrolled ? "10px 30px" : "15px 40px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    background: "rgba(255,255,255,0.05)",
-    backdropFilter: "blur(20px)",
-    borderRadius: "20px",
-    border: "1px solid rgba(255,255,255,0.1)",
-    zIndex: 1000,
-    transition: "all 0.3s ease",
-  }}
->
-      <div style={{ fontWeight: "bold", color: "#00ffb3" }}>
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      style={{
+        position: "fixed",
+        top: 20,
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        width: "min(1100px, 90%)",
+        padding: "14px 35px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        background: "rgba(10,15,25,0.9)",
+        backdropFilter: "blur(20px)",
+        borderRadius: "20px",
+        border: "1px solid rgba(255,255,255,0.08)",
+        zIndex: 1000
+      }}
+    >
+      <div style={{ fontWeight: 700, color: "var(--accent)" }}>
         Mohamed Serag
       </div>
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        <a href="#skills" style={{ color: "white", textDecoration: "none" }}>
-          Skills
-        </a>
-        <a href="#projects" style={{ color: "white", textDecoration: "none" }}>
-          Projects
-        </a>
-        <button
-          onClick={toggleMode}
-          style={{
-            background: "transparent",
-            border: "1px solid #00ffb3",
-            color: "#00ffb3",
-            borderRadius: "8px",
-            padding: "5px 12px",
-            cursor: "pointer",
-          }}
-        >
-          Mode
-        </button>
+      <div style={{ display: "flex", gap: "30px" }}>
+        {sections.map((section) => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            style={{
+              color: active === section.id ? "var(--accent)" : "white",
+              textDecoration: "none",
+              fontSize: active === section.id ? "16px" : "14px",
+              fontWeight: 500,
+              position: "relative",
+              transition: "0.3s"
+            }}
+          >
+            {section.label}
+
+            {active === section.id && (
+              <span
+                style={{
+                  position: "absolute",
+                  bottom: "-6px",
+                  left: 0,
+                  width: "100%",
+                  height: "2px",
+                  background: "var(--accent)"
+                }}
+              />
+            )}
+          </a>
+        ))}
       </div>
     </motion.nav>
   )

@@ -209,6 +209,7 @@ const tools = [
 export default function Tools() {
   return (
     <section
+    id="tools"
       style={{
         padding: "120px 8%",
         minHeight: "100vh",

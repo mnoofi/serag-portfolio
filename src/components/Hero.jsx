@@ -59,6 +59,7 @@ export default function Hero() {
 
   return (
     <section
+    id="home"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -133,7 +134,7 @@ export default function Hero() {
           </a>
 
           {/* Social Icons */}
-          <div style={{ display: "flex", gap: "22px", fontSize: "22px" }}>
+          <div style={{ display: "flex", gap: "12px", fontSize: "22px" }}>
 
   {[
     {
