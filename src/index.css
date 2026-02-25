@@ -108,3 +108,6 @@ html {
     display: block;
   }
 }
+html, body, * {
+  cursor: none !important;
+}

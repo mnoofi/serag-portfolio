@@ -5,10 +5,12 @@ import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Tools from "./components/Tools"
 import Certificates from "./components/Certificates"
+import CustomCursor from "./components/CustomCursor"
 
 function App() {
   return (
     <>
+    <CustomCursor />
       <Scene />
       <Navbar />
       <Hero />
