@@ -108,6 +108,8 @@ html {
     display: block;
   }
 }
-html, body, * {
-  cursor: none !important;
+@media (hover: hover) {
+  html, body,* {
+    cursor: none !important;
+  }
 }
